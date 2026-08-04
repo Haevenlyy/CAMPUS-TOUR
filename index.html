@@ -144,7 +144,8 @@
   }
   .welcome h2{font-size:clamp(1.9rem,4vw,2.6rem); line-height:1.12; color:var(--navy);}
   .welcome p{margin-top:18px; color:#3b4a6b; line-height:1.7; font-size:.98rem;}
-  .welcome .stats{display:flex; gap:28px; margin-top:30px; flex-wrap:wrap;}
+  .welcome .stats{display:flex; justify-content:flex-start; gap:28px; margin-top:30px; flex-wrap:wrap;}
+  .stat{text-align:center;}
   .stat b{display:block; font-family:'Fredoka'; font-size:1.7rem; color:var(--navy-2);}
   .stat span{font-size:.72rem; letter-spacing:.06em; color:#6b7794; text-transform:uppercase;}
 
@@ -522,11 +523,11 @@
   <div class="wrap grid">
     <div>
       <h2>Welcome to PUP<br>A. Mabini Campus</h2>
-      <p>Founded on October 17, 1904 as the Manila Business School, the campus grew into the Philippine College of Commerce before being reorganized and renamed for Apolinario Mabini in 1988 under Dr. Nemesio Prudente. Sitting on 10.71 hectares along Anonas St. in Santa Mesa, the grounds carry both academic and political history — PUP celebrated its Centennial Year in 2004, and several of its buildings are tied to the student movements of the Marcos era.</p>
-      <p>This tour covers the landmarks worth stopping at, the facilities students actually use day to day, and two recent alumni who've brought the university national attention.</p>
+      <p>Started back on October 17, 1904 by the American colonial government as the Manila Business School, this campus eventually evolved into the Philippine College of Commerce (PCC). Later on, during Dr. Nemesio Prudente's reorganization of the university in 1988, the grounds were officially renamed after Apolinario Mabini. Spanning across Santa Mesa along Anonas Street, these grounds hold layers of rich academic and political history—including celebrating our Centennial Year in 2004, alongside many buildings deeply tied to student movements during the Marcos era.</p>
+      <p>This self-guided tour takes you through the key historic landmarks, the day-to-day facilities students actually hang out in, and a couple of standout alumni who've brought major pride to the university.</p>
       <div class="stats">
         <div class="stat"><b>1904</b><span>Founded</span></div>
-        <div class="stat"><b>10.71 ha</b><span>Campus Area</span></div>
+        <div class="stat"><b>120+ yrs</b><span>Legacy</span></div>
         <div class="stat"><b>2004</b><span>Centennial Year</span></div>
       </div>
     </div>
@@ -638,7 +639,7 @@
 
     <div class="map-container">
       <div class="map-preview">
-        <img src="pupVicinityMap.jpg" alt="PUP A. Mabini Campus Vicinity Map">
+        <img src="pupVicinityMap.png" alt="PUP A. Mabini Campus Vicinity Map">
       </div>
       <div class="map-details">
         <h3>Explore the Campus Layout</h3>
@@ -657,6 +658,7 @@
           <h4>Facility Directory</h4>
           <div class="count-note" id="countNote">18 locations across campus</div>
         </div>
+        <span class="tag">A–Z as walked</span>
       </div>
 
       <div class="toolbar">
@@ -786,6 +788,11 @@
       name: "Nutrition and Food Science Bldg.",
       info: "The Nutrition and Food Science Building at PUP serves as the specialized facility for academic instruction, laboratory experimentation, and research in food technology, safety, and human nutrition.",
       tip: "First thought — parang dorm siya kahit nasa loob ng campus HAHAHA."
+    },
+    {
+      name: "GAD Bldg.",
+      info: "",
+      tip: "Saan nga ba ito? Google shows it near OUS."
     },
     {
       name: "Ferry Station",
