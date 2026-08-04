@@ -138,7 +138,7 @@
   }
 
   /* ---------- WELCOME ---------- */
-  .welcome{padding:86px 0; background:var(--cream);}
+  .welcome{padding:86px 0 40px; background:var(--cream);}
   .welcome .grid{
     display:grid; grid-template-columns:1.1fr .9fr; gap:64px; align-items:center;
   }
@@ -147,22 +147,55 @@
   .welcome .stats{display:flex; gap:28px; margin-top:30px; flex-wrap:wrap;}
   .stat b{display:block; font-family:'Fredoka'; font-size:1.7rem; color:var(--navy-2);}
   .stat span{font-size:.72rem; letter-spacing:.06em; color:#6b7794; text-transform:uppercase;}
+
+  /* orb art — circle badge with the pylon/obelisk graphic popping out the top */
+  .orb-outer{
+    position: relative;
+    padding-top: 50px; /* Gives physical space above for the obelisk tip to pop out into */
+    max-width: 320px;
+    margin: 0 auto;
+  }
   .orb-art{
-    position:relative; aspect-ratio:1/1; border-radius:50%;
-    background:conic-gradient(from 200deg, var(--sky-top), var(--gold), var(--sky-bot), var(--sky-top));
-    display:flex; align-items:center; justify-content:center;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Makes it a 100% true circle */
+    border-radius: 50%;   /* Perfect circle top and bottom */
+    background: conic-gradient(from 200deg, var(--sky-top), var(--gold), var(--sky-bot), var(--sky-top));
+    display: flex; 
+    align-items: flex-end; 
+    justify-content: center;
+    overflow: hidden;    /* Clips the bottom cleanly into the circle arc */
+    border: 2px dashed var(--navy);
   }
   .orb-art::before{
-    content:""; position:absolute; inset:14%;
-    border-radius:50%;
-    background:var(--cream);
-    border:2px dashed var(--navy);
+    content: "";
+    position: absolute; 
+    inset: 8px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px dashed var(--navy);
+    z-index: 1;
+    pointer-events: none;
   }
-  .orb-art .core{
-    position:relative; font-family:'Fredoka'; font-weight:700; color:var(--navy);
-    font-size:1.05rem; text-align:center; letter-spacing:.03em; z-index:2;
+  .orb-art .obelisk-pop{
+    position: relative;
+    z-index: 2;
+    width: 78%;
+    height: auto;
+    transform: translateY(12%);
+    filter: drop-shadow(0 10px 14px rgba(22,38,74,0.35));
   }
-  .orb-art .core small{display:block; font-family:'Space Grotesk'; font-weight:500; font-size:.68rem; color:#5a6784; margin-top:6px;}
+  .orb-caption{
+    text-align:center;
+    margin-top:22px;
+  }
+  .orb-caption .place{
+    font-family:'Fredoka'; font-weight:600; font-size:1.05rem; color:var(--navy);
+    letter-spacing:.02em;
+  }
+  .orb-caption .addr{
+    font-size:.78rem; color:#5a6784; margin-top:4px;
+  }
 
   /* ---------- SECTION HEADS ---------- */
   .section-head{
@@ -202,7 +235,6 @@
   .icons .section-head .tag { background: var(--gold); color: var(--navy); }
   .icon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
 
-  /* UPDATED ICON CARD STYLES FOR HOVER EFFECT */
   .icon-card {
     background: var(--navy-2);
     border: 2px solid var(--gold);
@@ -232,7 +264,6 @@
   .icon-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
   .icon-card p { font-size: .88rem; line-height: 1.65; color: #D7DEEF; }
 
-  /* HOVER REVEAL STYLES */
   .icon-text-content {
     flex: 1;
   }
@@ -321,7 +352,6 @@
 
   @media (max-width:880px){
     .welcome .grid{grid-template-columns:1fr;}
-    .orb-art{max-width:320px; margin:0 auto;}
     .card-grid{grid-template-columns:1fr 1fr;}
     .icon-grid{grid-template-columns:1fr;}
     .infobar .wrap{grid-template-columns:1fr 1fr;}
@@ -383,8 +413,16 @@
         <div class="stat"><b>2004</b><span>Centennial Year</span></div>
       </div>
     </div>
-    <div class="orb-art">
-      <div class="core">A. MABINI<br>CAMPUS<small>Anonas St., Santa Mesa, Manila</small></div>
+    <div>
+      <div class="orb-outer">
+        <div class="orb-art">
+          <img class="obelisk-pop" src="campus Tour.png" alt="PUP Pylon / Obelisk">
+        </div>
+      </div>
+      <div class="orb-caption">
+        <div class="place">A. MABINI CAMPUS</div>
+        <div class="addr">Anonas St., Santa Mesa, Manila</div>
+      </div>
     </div>
   </div>
 </section>
@@ -401,7 +439,7 @@
         <div class="star gold"></div>
         <div class="loc">PUP Main Gate, A. Mabini Campus</div>
         <h3>The Mural &amp; Dambana ng Kabayanihan</h3>
-        <p>A brass relief titled "The brass mural relief, titled "Consolidated Growth Through Education," was inaugurated in 1974 for PCC's (now PUP's) 70th anniversary, sculpted by Eduardo Castrillo — the same artist behind the EDSA People Power Monument. Right beside it at the gate is a separate memorial called "Dambana ng Kabayanihan" (Shrine of Heroism), dedicated to the youth leaders who opposed the Marcos dictatorship, many of whom came from PUP. So the mural itself isn't named "Dambana" — that's the adjacent monument, but the two sit together at the gate and often get referenced as one gate ensemble. </p>
+        <p>A brass relief titled "Consolidated Growth Through Education," inaugurated in 1974 for PCC's (now PUP's) 70th anniversary and sculpted by Eduardo Castrillo — the same artist behind the EDSA People Power Monument. Right beside it at the gate is a separate memorial, the Dambana ng Kabayanihan (Shrine of Heroism), dedicated to the youth leaders who opposed the Marcos dictatorship, many of them from PUP. The mural itself isn't named "Dambana" — that's the adjacent monument — but the two sit together at the gate and are often referenced as one gate ensemble.</p>
       </div>
 
       <div class="land-card">
@@ -442,11 +480,9 @@
       <h2>Campus Icons</h2>
       <span class="tag">Iskolar Pride</span>
     </div>
-    
-    <!-- UPDATED ICON GRID FOR HOVER REVEAL EFFECT -->
+
     <div class="icon-grid">
-      
-      <!-- MARINA SUMMERS CARD -->
+
       <div class="icon-card">
         <div class="icon-text-content">
           <span class="medal">★ MUPH 2026</span>
@@ -459,7 +495,6 @@
         </div>
       </div>
 
-      <!-- JOY BARCOMA CARD -->
       <div class="icon-card">
         <div class="icon-text-content">
           <span class="medal">★ Miss PH Earth 2025</span>
@@ -467,11 +502,11 @@
           <p>Joymayanne "Joy" Barcoma, a PUP Broadcasting alumna and former Iskolar ng Bayan, won Miss Philippines Earth 2025 and placed Top 8 at Miss Earth 2025. Back in her college days she already won Miss PASUC National 2017, representing PUP.</p>
         </div>
         <div class="icon-reveal">
-          <img src="joyBarcoma.jpg" alt="Joy Barcoma">
+          <img src="joyBarcomaPic.jpg" alt="Joy Barcoma">
           <span>Broadcasting</span>
         </div>
       </div>
-      
+
     </div>
   </div>
 </section>
