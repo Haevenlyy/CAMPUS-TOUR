@@ -148,23 +148,23 @@
   .stat b{display:block; font-family:'Fredoka'; font-size:1.7rem; color:var(--navy-2);}
   .stat span{font-size:.72rem; letter-spacing:.06em; color:#6b7794; text-transform:uppercase;}
 
-  /* orb art — circle badge with the pylon/obelisk graphic popping out the top */
+  /* orb art */
   .orb-outer{
     position: relative;
-    padding-top: 50px; /* Gives physical space above for the obelisk tip to pop out into */
+    padding-top: 50px;
     max-width: 320px;
     margin: 0 auto;
   }
   .orb-art{
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1; /* Makes it a 100% true circle */
-    border-radius: 50%;   /* Perfect circle top and bottom */
+    aspect-ratio: 1 / 1;
+    border-radius: 50%; 
     background: conic-gradient(from 200deg, var(--sky-top), var(--gold), var(--sky-bot), var(--sky-top));
     display: flex; 
     align-items: flex-end; 
     justify-content: center;
-    overflow: hidden;    /* Clips the bottom cleanly into the circle arc */
+    overflow: hidden;
     border: 2px dashed var(--navy);
   }
   .orb-art::before{
@@ -264,9 +264,7 @@
   .icon-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
   .icon-card p { font-size: .88rem; line-height: 1.65; color: #D7DEEF; }
 
-  .icon-text-content {
-    flex: 1;
-  }
+  .icon-text-content { flex: 1; }
 
   .icon-reveal {
     width: 0;
@@ -305,32 +303,149 @@
     margin-left: 24px;
   }
 
-  /* ---------- FACILITIES ---------- */
+  /* ---------- FACILITIES / VICINITY MAP SECTION & DROPDOWN ---------- */
   .facilities{padding:70px 0; background:var(--cream);}
+  .map-container {
+    background: #fff;
+    border: 2px solid var(--navy);
+    border-radius: 22px;
+    padding: 32px;
+    box-shadow: 6px 6px 0 var(--navy);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .map-preview {
+    width: 100%;
+    border-radius: 14px;
+    border: 2px solid var(--line);
+    overflow: hidden;
+    line-height: 0;
+  }
+  .map-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .map-details h3 {
+    font-size: 1.8rem;
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+  .map-details p {
+    font-size: .95rem;
+    color: #41496a;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .dropdown-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Fredoka';
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 99px;
+    border: 2px solid var(--navy);
+    box-shadow: 4px 4px 0 var(--navy);
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .dropdown-toggle-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--navy);
+  }
+  .dropdown-toggle-btn .arrow {
+    transition: transform 0.3s ease;
+  }
+  .dropdown-toggle-btn.active .arrow {
+    transform: rotate(180deg);
+  }
+
+  /* Collapsible Dropdown Content Section */
+  .facilities-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    background: #fff;
+    border: 2px solid var(--navy);
+    border-radius: 22px;
+    margin-top: 24px;
+    box-shadow: 6px 6px 0 var(--navy);
+    padding: 0 32px;
+  }
+  .facilities-dropdown-content.open {
+    max-height: 4000px;
+    padding: 32px;
+  }
+
+  /* Toolbar styling inside dropdown */
+  .toolbar {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    display: flex;
+    justify-content: center;
+  }
+  .toolbar input[type="text"] {
+    width: 100%;
+    font-family: 'Space Grotesk';
+    font-size: .92rem;
+    padding: 12px 18px;
+    border-radius: 99px;
+    border: 2px solid var(--navy);
+    outline: none;
+    background: #fff;
+    color: var(--navy);
+    box-shadow: 3px 3px 0 var(--navy);
+  }
+  .toolbar input::placeholder{color:#8b96b3;}
+
+  .sub-directory-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .sub-directory-head h4 { font-size: 1.4rem; color: var(--navy); font-family: 'Fredoka'; }
+  .count-note { font-size: .82rem; color: #5a6784; margin-top: 4px; }
+
   .fac-grid{
-    display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
-    gap:20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
   .fac-card{
-    background:#fff; border:2px solid var(--line);
-    border-radius:18px; padding:20px;
-    transition:border-color .15s ease, transform .15s ease;
+    position: relative;
+    background: var(--cream);
+    border: 2px solid var(--navy);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 4px 4px 0 var(--navy);
+    display: flex; flex-direction: column;
   }
-  .fac-card:hover{border-color:var(--navy); transform:translateY(-2px);}
-  .fac-card h4{font-family:'Fredoka'; font-size:1.02rem; color:var(--navy); margin-bottom:8px;}
-  .fac-card p{font-size:.82rem; color:#4a527a; line-height:1.55;}
-  .sticky-tip{
-    margin-top:14px;
-    background:#FFF3C4;
-    border:1.5px dashed var(--gold);
-    border-radius:12px;
-    padding:10px 12px;
-    font-size:.76rem;
-    font-style:italic;
-    color:#5c4a10;
-    position:relative;
+  .fac-card .star{width:12px; height:12px; top:-6px; right:14px;}
+  .fac-card h5{font-size:1.1rem; color:var(--navy); margin-bottom:8px; line-height:1.2; font-family:'Fredoka';}
+  .fac-card .info{font-size:.84rem; line-height:1.55; color:#41496a; margin-bottom:12px; flex:1;}
+  .fac-card .info.empty{font-style:italic; color:#98a1bc;}
+  .fac-card .tip{
+    font-size:.78rem; line-height:1.5; color:var(--navy-2);
+    background:#FFF3C4; border:1.5px dashed var(--gold);
+    border-radius:10px; padding:10px 12px;
   }
-  .sticky-tip::before{content:"✦ "; font-style:normal;}
+  .fac-card .tip b{color:var(--navy);}
+  .fac-card .tip.empty{display:none;}
+  .no-results{
+    display:none;
+    text-align:center; padding:40px 20px;
+    color:#5a6784; font-size:.9rem;
+    grid-column: span 2;
+  }
 
   /* ---------- INFO BAR ---------- */
   .infobar{background:var(--navy); color:var(--cream); padding:60px 0;}
@@ -354,8 +469,10 @@
     .welcome .grid{grid-template-columns:1fr;}
     .card-grid{grid-template-columns:1fr 1fr;}
     .icon-grid{grid-template-columns:1fr;}
+    .map-container{grid-template-columns:1fr; gap:24px;}
     .infobar .wrap{grid-template-columns:1fr 1fr;}
     .navlinks{display:none;}
+    .fac-grid{grid-template-columns:1fr;}
   }
   @media (max-width:560px){
     .card-grid{grid-template-columns:1fr;}
@@ -511,67 +628,48 @@
   </div>
 </section>
 
+<!-- FACILITIES / VICINITY MAP SECTION WITH INTEGRATED DROPDOWN -->
 <section class="facilities" id="facilities">
   <div class="wrap">
     <div class="section-head">
       <h2>Campus Facilities</h2>
       <span class="tag">Where Students Go</span>
     </div>
-    <div class="fac-grid">
 
-      <div class="fac-card">
-        <h4>Oval</h4>
-        <p>Main venue for sports festivals, recreational activities, and PATHFIT classes.</p>
-        <div class="sticky-tip">Good hangout spot at night — malamig, and open enough for games like habulan with friends.</div>
+    <div class="map-container">
+      <div class="map-preview">
+        <img src="pupVicinityMap.jpg" alt="PUP A. Mabini Campus Vicinity Map">
       </div>
-
-      <div class="fac-card">
-        <h4>Obelisk</h4>
-        <p>The central symbol of the university near the main entrance, honoring PUP's history and ideals.</p>
-        <div class="sticky-tip">Classic grad-photo spot — may sabi-sabi pag nagpicture ka bago ka graduate, di ka raw makakagraduate. Also dressed up for Christmas season.</div>
+      <div class="map-details">
+        <h3>Explore the Campus Layout</h3>
+        <p>Looking for your next class, a quiet study nook, or a spot to grab food with blockmates? Check out the complete directory of over 20 campus facilities, buildings, and hidden student hangouts across the A. Mabini grounds.</p>
+        <button id="dropdownToggleBtn" class="dropdown-toggle-btn" onclick="toggleFacilitiesDropdown()">
+          <span>📍 View All Facilities Directory</span>
+          <span class="arrow">▼</span>
+        </button>
       </div>
-
-      <div class="fac-card">
-        <h4>Freedom Park</h4>
-        <p>Open seating area good for eating or just tumambay — quiet compared to the rest of campus.</p>
-        <div class="sticky-tip">May mga seats sa gilid, tahimik na eating spot.</div>
-      </div>
-
-      <div class="fac-card">
-        <h4>Lagoon</h4>
-        <p>Hub of stand-up booths, kainan, and student happenings — brand pop-up booths show up here too.</p>
-        <div class="sticky-tip">1-2-3 go, kanya-kanya — laging may nangyayari.</div>
-      </div>
-
-      <div class="fac-card">
-        <h4>Ninoy Aquino Library (NALLRC)</h4>
-        <p>The university's main library and learning resources center.</p>
-        <div class="sticky-tip">Unofficial sleeping place ng mga pagod na iskolar ng bayan.</div>
-      </div>
-
-      <div class="fac-card">
-        <h4>Linear Park</h4>
-        <p>A quieter stretch of campus for reflection.</p>
-        <div class="sticky-tip">Good for deep thinking — huey isip tapos langhap ng liog ng Pasig.</div>
-      </div>
-
-      <div class="fac-card"><h4>Gazebo</h4><p>Open-air space for studying, resting, and small group meetings between classes.</p></div>
-      <div class="fac-card"><h4>Gymnasium</h4><p>Main indoor venue for intercollegiate basketball and volleyball, PE classes, and varsity training.</p></div>
-      <div class="fac-card"><h4>Tahanan ng Alumni</h4><p>Alumni Center — a place for returning graduates to stay, network, and interact with the university.</p></div>
-      <div class="fac-card"><h4>Physical Education Bldg.</h4><p>Academic and instructional hub for the College of Human Kinetics — sports science, dance, movement education.</p></div>
-      <div class="fac-card"><h4>Swimming Pool</h4><p>Primary facility for aquatic PATHFIT courses and the university's varsity swimming team.</p></div>
-      <div class="fac-card"><h4>Amphitheater</h4><p>Outdoor venue for campus events and gatherings.</p></div>
-      <div class="fac-card"><h4>West Wing</h4><p>Academic building housing college offices and classrooms.</p></div>
-      <div class="fac-card"><h4>East Wing</h4><p>Academic building housing college offices and classrooms.</p></div>
-      <div class="fac-card"><h4>Interfaith Chapel</h4><p>A shared space for reflection and worship across faiths.</p></div>
-      <div class="fac-card"><h4>Nutrition and Food Science Bldg.</h4><p>Home to programs in nutrition and food science.</p></div>
-      <div class="fac-card"><h4>GAD Bldg.</h4><p>Houses the university's Gender and Development office.</p></div>
-      <div class="fac-card"><h4>Ferry Station</h4><p>Campus stop along the Pasig River ferry route.</p></div>
-      <div class="fac-card"><h4>South Wing</h4><p>Academic building housing college offices and classrooms.</p></div>
-      <div class="fac-card"><h4>LHS</h4><p>Laboratory High School building.</p></div>
-      <div class="fac-card"><h4>OUS Bldg.</h4><p>Office of the University Secretary building.</p></div>
-
     </div>
+
+    <!-- Dropdown Container -->
+    <div id="facilitiesDropdown" class="facilities-dropdown-content">
+      <div class="sub-directory-head">
+        <div>
+          <h4>Facility Directory</h4>
+          <div class="count-note" id="countNote">18 locations across campus</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <input type="text" id="searchInput" placeholder="🔍 Search a facility (e.g. Lagoon, Library, Gym)...">
+      </div>
+
+      <div class="fac-grid" id="facGrid">
+        <!-- cards injected by JS -->
+      </div>
+
+      <div class="no-results" id="noResults">No facilities match your search. Try another keyword 👀</div>
+    </div>
+
   </div>
 </section>
 
@@ -609,6 +707,165 @@
 <footer>
   Polytechnic University of the Philippines · A. Mabini Campus · Student-made campus tour guide
 </footer>
+
+<script>
+  function toggleFacilitiesDropdown() {
+    const dropdown = document.getElementById('facilitiesDropdown');
+    const btn = document.getElementById('dropdownToggleBtn');
+    dropdown.classList.toggle('open');
+    btn.classList.toggle('active');
+  }
+
+  const facilities = [
+    {
+      name: "Oval",
+      info: "The PUP Oval serves as the main venue for sports festivals, recreational activities, and some classes in Physical Activities Toward Health and Fitness.",
+      tip: "Could be a hangout spot for friends at night — malamig, and you can freely play games like habulan and such."
+    },
+    {
+      name: "Gazebo",
+      info: "The PUP Gazebo provides a dedicated open-air space for students to study, rest, and hold small group meetings between classes.",
+      tip: "Masarap mag-review o magchismisan dito pag may vacant time, kaso unahan lang talaga sa upuan huhuhu — effective spot din pang-videoke with blockmates."
+    },
+    {
+      name: "Gym",
+      info: "The PUP Gymnasium is the main indoor sports venue for intercollegiate basketball and volleyball competitions, physical education classes, and university varsity training.",
+      tip: "Dito raw venue ng last batch ng graduates. Tanong lang — kailan ba nagpapa-aircon pag nagpapa-fit?"
+    },
+    {
+      name: "Tahanan ng Alumni",
+      info: "As a dedicated area for alumni relations, PUP's Tahanan ng Alumni (Alumni Center) provides returning graduates with a place to stay on campus, network, and interact with the university.",
+      tip: ""
+    },
+    {
+      name: "Physical Education Bldg.",
+      info: "The Physical Education (PE) facility at PUP, tied directly to the College of Human Kinetics (CHK), serves as the main academic and instructional hub for sports science, dance, and movement education.",
+      tip: "Venue ng PATHFIT kapag hindi sa gym o sa open/tennis court."
+    },
+    {
+      name: "Swimming Pool",
+      info: "The PUP Swimming Pool serves as the primary facility for aquatic Physical Education (PATHFIT) courses, swimming instruction, and water safety training. It also functions as the training ground for the varsity swimming team and hosts intramural aquatic competitions.",
+      tip: "Maswerte ka kung PATHFIT mo ay makakapagswimming dito hehe."
+    },
+    {
+      name: "Obelisk",
+      info: "The iconic PUP Obelisk stands as the central symbol of the university, representing the strength, resilience, and noble ideals of the Polytechnic University of the Philippines. Located near the main entrance, it serves as a historic landmark and gathering point.",
+      tip: "Dito mostly nagpapapicture ang bagong graduates — may sabi-sabing pag nagpicture ka diyan hindi ka raw makakagraduate (over lang talaga 'yan!). Aesthetic din siya, lalo pag may seasonal décor."
+    },
+    {
+      name: "Freedom Park",
+      info: "The PUP Freedom Park serves as an open space for student gatherings, activities, and leisure breaks inside the campus.",
+      tip: "May mga seats sa gilid para tumambay — good eating spot dahil tahimik."
+    },
+    {
+      name: "Lagoon",
+      info: "The central landmark hub of PUP Main, surrounded by food stalls, greenery, and student activity centers.",
+      tip: "Dito 1-2-3 go kanya-kanya na — maraming stand-up booths at kainan, minsan may brand booths din. Nakaluwag-luwag dito."
+    },
+    {
+      name: "Amphitheater",
+      info: "An open-air tiered seating venue right near the Lagoon, commonly used for student performances, rallies, and small assemblies.",
+      tip: "Pwedeng tambayan after bumili ng food sa Lagoon — kung bukas. Minsan kasi nakasarado."
+    },
+    {
+      name: "West Wing",
+      info: "The West Wing of the PUP Main Academic Building.",
+      tip: "May magandang solo CR dito — walang lock."
+    },
+    {
+      name: "East Wing",
+      info: "The PUP Main Academic Building's East Wing serves mainly as an instructional hub that houses classrooms, academic departments, and faculty offices.",
+      tip: "Masikip, mainit, at minsan walang kuryente pa."
+    },
+    {
+      name: "Interfaith Chapel",
+      info: "A quiet space dedicated to spiritual reflection, prayer, quiet devotion, and religious services for all faiths within the campus community.",
+      tip: "May mga upuan sa paligid — good tambayan kung gusto mo ng katahimikan sa magulong mundo."
+    },
+    {
+      name: "Nutrition and Food Science Bldg.",
+      info: "The Nutrition and Food Science Building at PUP serves as the specialized facility for academic instruction, laboratory experimentation, and research in food technology, safety, and human nutrition.",
+      tip: "First thought — parang dorm siya kahit nasa loob ng campus HAHAHA."
+    },
+    {
+      name: "Ferry Station",
+      info: "The Pasig River Ferry Transport System PUP Station, providing an alternative water-based transportation route for students and commuters going to Pasig, Makati, or Manila.",
+      tip: "Binondo is now!"
+    },
+    {
+      name: "South Wing",
+      info: "The computer lab for the CCIS Department is located on the fifth floor of the South Wing building, which is primarily made up of offices from various school departments.",
+      tip: "Wing ng Computer Laboratories, specifically sa 5th floor."
+    },
+    {
+      name: "Ninoy Aquino Library and Learning Resources Center",
+      info: "The primary university library housing thousands of books, research archives, digital resources, and quiet study halls.",
+      tip: "Sleeping place ng mga pagod na iskolar ng bayan."
+    },
+    {
+      name: "LHS",
+      info: "Laboratory High School facility within the main campus grounds, housing PUP's junior and senior high school students.",
+      tip: "May open field sa ground floor — good practice space for activities and dances."
+    },
+    {
+      name: "OUS Bldg.",
+      info: "Open University System Building, handling distance learning, flexible education programs, and specialized diploma courses.",
+      tip: "Bagong-tayo — North Wing next?"
+    },
+    {
+      name: "Linear Park",
+      info: "A scenic riverside promenade strip along the Pasig River side of the campus grounds.",
+      tip: "Dito ka talaga makakapag-deep thinking — parang huey-isip habang nilalanghap ang hangin ng Ilog Pasig."
+    }
+  ];
+
+  const grid = document.getElementById('facGrid');
+  const countNote = document.getElementById('countNote');
+  const noResults = document.getElementById('noResults');
+  const searchInput = document.getElementById('searchInput');
+
+  function render(list) {
+    grid.innerHTML = '';
+    if (list.length === 0) {
+      noResults.style.display = 'block';
+    } else {
+      noResults.style.display = 'none';
+    }
+    list.forEach((f, i) => {
+      const card = document.createElement('div');
+      card.className = 'fac-card';
+
+      const infoHTML = f.info
+        ? `<p class="info">${f.info}</p>`
+        : `<p class="info empty">No official description yet.</p>`;
+
+      const tipHTML = f.tip
+        ? `<div class="tip"><b>Iskolar tip:</b> ${f.tip}</div>`
+        : `<div class="tip empty"></div>`;
+
+      card.innerHTML = `
+        <span class="star ${i % 3 === 0 ? 'gold' : (i % 3 === 1 ? 'blue' : 'white')}"></span>
+        <h5>${f.name}</h5>
+        ${infoHTML}
+        ${tipHTML}
+      `;
+      grid.appendChild(card);
+    });
+    countNote.textContent = `${list.length} location${list.length === 1 ? '' : 's'} across campus`;
+  }
+
+  searchInput.addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    const filtered = facilities.filter(f =>
+      f.name.toLowerCase().includes(q) ||
+      f.info.toLowerCase().includes(q) ||
+      f.tip.toLowerCase().includes(q)
+    );
+    render(filtered);
+  });
+
+  render(facilities);
+</script>
 
 </body>
 </html>
