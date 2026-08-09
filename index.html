@@ -193,6 +193,16 @@
     padding:9px 18px; border-radius:99px;
     font-size:.8rem; font-weight:600;
     box-shadow:3px 3px 0 var(--navy);
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .pill:hover, .pill:active{
+    transform:translate(-2px,-2px);
+    box-shadow:5px 5px 0 var(--navy);
+  }
+  @media (max-width:480px){
+    .hero .pills{flex-direction:column; align-items:center;}
+    .pill{width:fit-content;}
   }
   .hero-cta{
     display:inline-flex; align-items:center; gap:10px;
@@ -534,6 +544,31 @@
   }
   .toolbar input::placeholder{color:#8b96b3;}
 
+  .batch-toggle{
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+    margin:0 auto 24px; max-width:600px;
+  }
+  .batch-btn{
+    flex:1; min-width:170px;
+    display:flex; flex-direction:column; align-items:center; gap:2px;
+    background:#fff; border:2px solid var(--navy);
+    border-radius:16px; padding:10px 16px;
+    font-family:'Fredoka'; font-weight:600; font-size:.95rem;
+    color:var(--navy); cursor:pointer;
+    box-shadow:3px 3px 0 var(--navy);
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  }
+  .batch-btn span{
+    font-family:'Space Grotesk'; font-weight:500; font-size:.72rem;
+    color:#5a6784;
+  }
+  .batch-btn:hover{transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--navy);}
+  .batch-btn.active{
+    background:var(--gold); color:var(--navy);
+    box-shadow:3px 3px 0 var(--navy);
+  }
+  .batch-btn.active span{color:var(--navy-2);}
+
   .sub-directory-head {
     display: flex;
     align-items: flex-end;
@@ -656,10 +691,10 @@
     </div>
     <p class="tagline">Walk through 120+ years of history — from a colonial-era business school to the home of the Iskolar ng Bayan. Landmarks, hidden hangout spots, and the people who put PUP on the map.</p>
     <div class="pills">
-      <div class="pill">🏛 5 Historic Landmarks</div>
-      <div class="pill">✊ 2 Student Movements</div>
-      <div class="pill">📍 20+ Campus Facilities</div>
-      <div class="pill">⭐ 2 Campus Icons</div>
+      <a href="#landmarks" class="pill">🏛 5 Historic Landmarks</a>
+      <a href="#movements" class="pill">✊ 2 Student Movements</a>
+      <a href="#facilities" class="pill">📍 20+ Campus Facilities</a>
+      <a href="#icons" class="pill">⭐ 2 Campus Icons</a>
     </div>
     <a href="#welcome" class="hero-cta">Start the Tour <span class="arrow-down">↓</span></a>
   </div>
@@ -703,7 +738,7 @@
         <div class="star gold"></div>
         <div class="loc">PUP Main Gate, A. Mabini Campus</div>
         <h3>The Mural &amp; Dambana ng Kabayanihan</h3>
-        <p>A brass relief titled "Consolidated Growth Through Education," inaugurated in 1974 for PCC's (now PUP's) 70th anniversary and sculpted by Eduardo Castrillo — the same artist behind the EDSA People Power Monument. Right beside it at the gate is a separate memorial, the Dambana ng Kabayanihan (Shrine of Heroism), dedicated to the youth leaders who opposed the Marcos dictatorship, many of them from PUP. The mural itself isn't named "Dambana" — that's the adjacent monument — but the two sit together at the gate and are often referenced as one gate ensemble.</p>
+        <p>The brass mural relief, titled "Consolidated Growth Through Education," was inaugurated in 1974 for PCC's (now PUP's) 70th anniversary, sculpted by Eduardo Castrillo — the same artist behind the EDSA People Power Monument. Right beside it at the gate is a separate memorial called "Dambana ng Kabayanihan" (Shrine of Heroism), dedicated to the youth leaders who opposed the Marcos dictatorship, many of whom came from PUP. So the mural itself isn't named "Dambana" — that's the adjacent monument, but the two sit together at the gate and often get referenced as one gate ensemble.</p>
       </div>
 
       <div class="land-card">
@@ -724,7 +759,7 @@
         <div class="star blue"></div>
         <div class="loc">A. Mabini Campus · formerly Freedom Hall / Unyon ng Mag-aaral Bldg.</div>
         <h3>Charlie Del Rosario Bldg.</h3>
-        <p>Named for Carlos "Charlie" del Rosario, a 27-year-old Political Science and History instructor at the Philippine College of Commerce and a ranking member of the Movement for a Democratic Philippines and former KM general secretary, who disappeared on March 19, 1971 and is considered the first desaparecido/victim of the Marcos regime. A 2025 document discovery confirmed he was abducted, tortured, and killed by the Presidential Security Unit under Fabian Ver. Today the building functions as PUP's Student Center, still known to many as "Unyon."</p>
+        <p>Named for Carlos "Charlie" del Rosario, a 27-year-old Political Science and History instructor at the Philippine College of Commerce and a ranking member of the Movement for a Democratic Philippines and former KM general secretary, who disappeared on March 19, 1971 and is considered the first desaparecido/victim of the Marcos regime. A 2025 document discovery confirmed he was abducted, tortured, and killed by the Presidential Security Unit</p>
       </div>
 
       <div class="land-card">
@@ -757,7 +792,7 @@
         <div class="star gold"></div>
         <span class="yr">2026</span>
         <h3>PUP CCIS Walkout Against Unfair Hands-On Exams</h3>
-        <p>CCIS students staged a walkout after the college abruptly changed the schedule for major hands-on exams in the last week of May 2026, despite the original dates having been posted back in February. The change collided with students' already-set schedules for final projects and exams in their minors. Concerns were raised but went unheard, so students walked out — not just over the scheduling conflict, but to assert that student concerns can't be dismissed.</p>
+        <p>CCIS students staged a walkout after the college abruptly changed the schedule for their major hands-on exams in the last week of May 2026 despite the original dates having been posted back in February. The changes collided with students' already-set schedules for final projects and exams in their other subjects, especially their minors. Students raised their voices and concerns but to no avail. In response, they collectively walked out, not just to protest the scheduling conflict, but to assert that student concerns can't be dismissed.</p>
       </div>
 
     </div>
@@ -831,6 +866,17 @@
           <div class="count-note" id="countNote">20 locations across campus</div>
         </div>
         <span class="tag">A–Z as walked</span>
+      </div>
+
+      <div class="batch-toggle">
+        <button class="batch-btn active" data-batch="1" onclick="setBatch(1)">
+          Batch 1
+          <span>Start at Oval</span>
+        </button>
+        <button class="batch-btn" data-batch="2" onclick="setBatch(2)">
+          Batch 2
+          <span>Start at Lagoon</span>
+        </button>
       </div>
 
       <div class="toolbar">
@@ -945,7 +991,7 @@
     {
       name: "Gym",
       info: "The PUP Gymnasium is the main indoor sports venue for intercollegiate basketball and volleyball competitions, physical education classes, and university varsity training.",
-      tip: "Dito raw venue ng last batch ng graduates. Tanong lang — kailan ba nagpapa-aircon pag nagpapa-fit?"
+      tip: "Dito raw venue ng last batch ng graduates. When kaya mabubuksan aircon pag nagpapathfit?"
     },
     {
       name: "Tahanan ng Alumni",
@@ -960,7 +1006,7 @@
     {
       name: "Swimming Pool",
       info: "The PUP Swimming Pool serves as the primary facility for aquatic Physical Education (PATHFIT) courses, swimming instruction, and water safety training. It also functions as the training ground for the varsity swimming team and hosts intramural aquatic competitions.",
-      tip: "Maswerte ka kung PATHFIT mo ay makakapagswimming dito hehe."
+      tip: "If maswerte makakapagswimming dito kung ito PATHFIT hehe"
     },
     {
       name: "Obelisk",
@@ -970,7 +1016,7 @@
     {
       name: "Freedom Park",
       info: "The PUP Freedom Park serves as an open space for student gatherings, activities, and leisure breaks inside the campus.",
-      tip: "May mga seats sa gilid para tumambay — good eating spot dahil tahimik."
+      tip: "When magagawa? Pero may mga seats pa rin naman sa gilid para tumambay and good for eating place kasi tahimik "
     },
     {
       name: "Lagoon",
@@ -985,12 +1031,12 @@
     {
       name: "West Wing",
       info: "The West Wing of the PUP Main Academic Building contains classrooms, faculty offices, and student offices.",
-      tip: "May magandang solo CR dito — walang lock."
+      tip: "May magandang solo CR dito (walang lock)."
     },
     {
       name: "East Wing",
       info: "The PUP Main Academic Building's East Wing serves mainly as an instructional hub that houses classrooms, academic departments, and faculty offices.",
-      tip: "Masikip, mainit, at minsan walang kuryente pa."
+      tip: "Masikip, mainit, tas wala pa rin kuryente??."
     },
     {
       name: "Interfaith Chapel",
@@ -1000,7 +1046,7 @@
     {
       name: "Nutrition and Food Science Bldg.",
       info: "The Nutrition and Food Science Building at PUP serves as the specialized facility for academic instruction, laboratory experimentation, and research in food technology, safety, and human nutrition.",
-      tip: "First thought — parang dorm siya kahit nasa loob ng campus HAHAHA."
+      tip: "First thought, dorm toh inside campus HAHHAHA."
     },
     {
       name: "Ferry Station",
@@ -1030,7 +1076,7 @@
     {
       name: "Linear Park",
       info: "A scenic riverside promenade strip along the Pasig River side of the campus grounds.",
-      tip: "Dito ka talaga makakapag-deep thinking — parang huey-isip habang nilalanghap ang hangin ng Ilog Pasig."
+      tip: "Dito ka talaga makakapag deep thinking na para bang huey isip tapos langhap ng liog pasig."
     }
   ];
 
@@ -1072,17 +1118,41 @@
     syncDropdownHeight();
   }
 
-  searchInput.addEventListener('input', (e) => {
-    const q = e.target.value.trim().toLowerCase();
-    const filtered = facilities.filter(f =>
-      f.name.toLowerCase().includes(q) ||
-      f.info.toLowerCase().includes(q) ||
-      f.tip.toLowerCase().includes(q)
-    );
-    render(filtered);
-  });
+  const LAGOON_INDEX = facilities.findIndex(f => f.name === "Lagoon");
+  let currentBatch = 1;
 
-  render(facilities);
+  function getBatchOrder(batch) {
+    if (batch === 2 && LAGOON_INDEX !== -1) {
+      // Batch 2 walks the same loop but starting (and ending) at the Lagoon.
+      return facilities.slice(LAGOON_INDEX).concat(facilities.slice(0, LAGOON_INDEX));
+    }
+    return facilities.slice();
+  }
+
+  function applyFilterAndRender() {
+    const q = searchInput.value.trim().toLowerCase();
+    const ordered = getBatchOrder(currentBatch);
+    const filtered = q
+      ? ordered.filter(f =>
+          f.name.toLowerCase().includes(q) ||
+          f.info.toLowerCase().includes(q) ||
+          f.tip.toLowerCase().includes(q)
+        )
+      : ordered;
+    render(filtered);
+  }
+
+  function setBatch(batch) {
+    currentBatch = batch;
+    document.querySelectorAll('.batch-btn').forEach(b => {
+      b.classList.toggle('active', Number(b.dataset.batch) === batch);
+    });
+    applyFilterAndRender();
+  }
+
+  searchInput.addEventListener('input', applyFilterAndRender);
+
+  applyFilterAndRender();
 </script>
 
 </body>
