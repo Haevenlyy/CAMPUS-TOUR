@@ -155,9 +155,12 @@
   }
   .orbit{
     position:relative;
-    width:min(680px, 92vw);
+    width:min(680px, 82vw);
     margin:0 auto;
-    padding:44px 10px;
+    padding:50px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .orbit::before{
     content:"";
@@ -180,6 +183,7 @@
     -webkit-text-stroke:2px var(--navy);
     paint-order:stroke fill;
     letter-spacing:.01em;
+    text-align: center;
   }
   .hero p.tagline{
     max-width:480px; margin:26px auto 0;
@@ -644,8 +648,8 @@
   @media (max-width:560px){
     .card-grid{grid-template-columns:1fr;}
     .infobar .wrap{grid-template-columns:1fr;}
-    .orbit { padding: 64px 10px; }
-    .orbit::before { transform: scaleY(0.7); }
+    .orbit { padding: 54px 15px; }
+    .orbit::before { transform: scaleY(0.6); }
   }
 </style>
 </head>
