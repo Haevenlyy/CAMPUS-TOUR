@@ -24,6 +24,7 @@
     background:var(--cream);
     color:var(--navy);
     -webkit-font-smoothing:antialiased;
+    position: relative;
   }
   h1,h2,h3, .bubble{
     font-family:'Fredoka', sans-serif;
@@ -31,15 +32,31 @@
   a{color:inherit; text-decoration:none;}
   .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
 
-  /* ---------- SPARKLE / STAR ---------- */
+  /* ---------- SPACE / STAR THEME OVERLAYS ---------- */
+  .cosmic-dust {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(237,187,62,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
   .star{
     position:absolute;
     background:var(--gold);
     clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
     opacity:.85;
+    animation: twinkle 3s ease-in-out infinite alternate;
   }
-  .star.blue{background:var(--navy-2);}
-  .star.white{background:#fff;}
+  .star.blue{background:var(--navy-2); animation-delay: 1s;}
+  .star.white{background:#fff; animation-delay: 2s;}
+
+  @keyframes twinkle {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1.2); opacity: 1; }
+  }
 
   /* ---------- NAV ---------- */
   .topbar{
@@ -64,7 +81,7 @@
     font-family:'Fredoka'; font-weight:700; font-size:1.15rem;
     color:var(--navy); display:flex; align-items:center; gap:8px;
   }
-  .logo .dot{width:10px; height:10px; border-radius:50%; background:var(--gold); border:2px solid var(--navy);}
+  .logo .dot{width:10px; height:10px; border-radius:50%; background:var(--gold); border:2px solid var(--navy); box-shadow: 0 0 8px var(--gold);}
   .navlinks{display:flex; gap:28px; font-size:.85rem; font-weight:600;}
   .navlinks a{position:relative; padding:4px 2px;}
   .navlinks a:hover{color:var(--navy-2);}
@@ -92,36 +109,35 @@
     background:var(--navy); color:var(--chrome);
     padding:6px 16px; border-radius:99px;
     margin-bottom:26px;
+    box-shadow: 0 0 12px rgba(22,38,74,0.3);
   }
   .orbit{
     position:relative;
-    width:min(560px, 88vw);
+    width:min(680px, 92vw);
     margin:0 auto;
-    padding:40px 10px;
+    padding:44px 10px;
   }
   .orbit::before{
     content:"";
     position:absolute; inset:0;
     border:2px dashed var(--navy-2);
     border-radius:50%;
-    transform:scaleY(.42);
+    transform:scaleY(.5);
     opacity:.55;
+    animation: rotate-orbit 20s linear infinite;
+  }
+  @keyframes rotate-orbit {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
   }
   .hero h1{
     position:relative;
-    font-size:clamp(2.6rem, 8vw, 4.6rem);
-    line-height:1.02;
+    font-size:clamp(1.9rem, 5.6vw, 3.4rem);
+    line-height:1.14;
     color:#fff;
-    -webkit-text-stroke:2.5px var(--navy);
+    -webkit-text-stroke:2px var(--navy);
     paint-order:stroke fill;
     letter-spacing:.01em;
-  }
-  .hero .sub-line{
-    position:relative;
-    font-family:'Fredoka'; font-weight:600;
-    font-size:clamp(1.4rem, 4vw, 2rem);
-    color:var(--navy);
-    margin-top:2px;
   }
   .hero p.tagline{
     max-width:480px; margin:26px auto 0;
@@ -136,9 +152,31 @@
     font-size:.8rem; font-weight:600;
     box-shadow:3px 3px 0 var(--navy);
   }
+  .hero-cta{
+    display:inline-flex; align-items:center; gap:10px;
+    margin-top:36px;
+    background:var(--navy); color:#fff;
+    font-family:'Fredoka'; font-weight:600; font-size:1rem;
+    padding:14px 30px; border-radius:99px;
+    border:2px solid var(--navy);
+    box-shadow:4px 4px 0 var(--gold);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .hero-cta:hover{
+    transform:translate(-2px,-2px);
+    box-shadow:6px 6px 0 var(--gold);
+  }
+  .hero-cta .arrow-down{
+    display:inline-block;
+    animation:bounce-down 1.6s ease-in-out infinite;
+  }
+  @keyframes bounce-down{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(4px);}
+  }
 
   /* ---------- WELCOME ---------- */
-  .welcome{padding:86px 0 40px; background:var(--cream);}
+  .welcome{padding:86px 0 40px; background:var(--cream); position: relative;}
   .welcome .grid{
     display:grid; grid-template-columns:1.1fr .9fr; gap:64px; align-items:center;
   }
@@ -149,12 +187,22 @@
   .stat b{display:block; font-family:'Fredoka'; font-size:1.7rem; color:var(--navy-2);}
   .stat span{font-size:.72rem; letter-spacing:.06em; color:#6b7794; text-transform:uppercase;}
 
-  /* orb art */
+  /* orb art with subtle celestial rings */
   .orb-outer{
     position: relative;
     padding-top: 50px;
     max-width: 320px;
     margin: 0 auto;
+  }
+  .orb-outer::after {
+    content: "✧ ✦ ✧";
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 6px;
   }
   .orb-art{
     position: relative;
@@ -167,6 +215,7 @@
     justify-content: center;
     overflow: hidden;
     border: 2px dashed var(--navy);
+    box-shadow: inset 0 0 25px rgba(22,38,74,0.15);
   }
   .orb-art::before{
     content: "";
@@ -202,15 +251,22 @@
   .section-head{
     display:flex; align-items:flex-end; justify-content:space-between;
     margin-bottom:38px; gap:20px; flex-wrap:wrap;
+    position: relative;
   }
-  .section-head h2{font-size:clamp(1.7rem,3.6vw,2.3rem); color:var(--navy);}
+  .section-head h2{font-size:clamp(1.7rem,3.6vw,2.3rem); color:var(--navy); display: flex; align-items: center; gap: 10px;}
+  .section-head h2::before {
+    content: "✦";
+    font-size: 1.1rem;
+    color: var(--gold);
+  }
   .section-head .tag{
     font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
     color:var(--navy-2); background:var(--chrome); padding:5px 12px; border-radius:99px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
   }
 
   /* ---------- LANDMARKS ---------- */
-  .landmarks{padding:70px 0; background:linear-gradient(180deg,#fff, var(--cream));}
+  .landmarks{padding:70px 0; background:linear-gradient(180deg,#fff, var(--cream)); position: relative;}
   .card-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
   .land-card{
     position:relative;
@@ -230,8 +286,40 @@
   .land-card h3{font-size:1.18rem; color:var(--navy); margin-bottom:10px; line-height:1.2;}
   .land-card p{font-size:.86rem; line-height:1.55; color:#41496a;}
 
+  /* ---------- MOVEMENTS / MILESTONES ---------- */
+  .movements{padding:70px 0; background:var(--cream); position: relative;}
+  .movements .card-grid{grid-template-columns:repeat(2,1fr);}
+  .move-card{
+    position:relative;
+    background:#fff;
+    border:2px solid var(--navy);
+    border-radius:22px;
+    padding:26px 24px 24px;
+    box-shadow:5px 5px 0 var(--navy);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .move-card:hover{transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--navy);}
+  .move-card .star{width:16px; height:16px; top:-8px; right:18px;}
+  .move-card .yr{
+    display:inline-block;
+    font-size:.7rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--navy); background:var(--gold);
+    padding:4px 12px; border-radius:99px; margin-bottom:12px;
+  }
+  .move-card h3{font-size:1.18rem; color:var(--navy); margin-bottom:10px; line-height:1.25;}
+  .move-card p{font-size:.86rem; line-height:1.6; color:#41496a;}
+
   /* ---------- ICONS SPOTLIGHT ---------- */
   .icons { padding: 70px 0; background: var(--navy); color: var(--cream); position: relative; overflow: hidden; }
+  .icons::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.07;
+    pointer-events: none;
+  }
   .icons .section-head h2 { color: #fff; }
   .icons .section-head .tag { background: var(--gold); color: var(--navy); }
   .icon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
@@ -305,7 +393,7 @@
   }
 
   /* ---------- FACILITIES / VICINITY MAP SECTION & DROPDOWN ---------- */
-  .facilities{padding:70px 0; background:var(--cream);}
+  .facilities{padding:70px 0; background:var(--cream); position: relative;}
   .map-container {
     background: #fff;
     border: 2px solid var(--navy);
@@ -449,8 +537,8 @@
   }
 
   /* ---------- INFO BAR ---------- */
-  .infobar{background:var(--navy); color:var(--cream); padding:60px 0;}
-  .infobar .wrap{display:grid; grid-template-columns:1.1fr repeat(3,1fr); gap:36px;}
+  .infobar{background:var(--navy); color:var(--cream); padding:60px 0; position: relative;}
+  .infobar .wrap{display:grid; grid-template-columns:1.1fr repeat(3,1fr); gap:36px; position: relative; z-index: 2;}
   .infobar h2{font-size:1.8rem; margin-bottom:8px;}
   .infobar .lead p{font-size:.86rem; color:#B9C4E0; line-height:1.6;}
   .info-col h5{
@@ -469,6 +557,7 @@
   @media (max-width:880px){
     .welcome .grid{grid-template-columns:1fr;}
     .card-grid{grid-template-columns:1fr 1fr;}
+    .movements .card-grid{grid-template-columns:1fr;}
     .icon-grid{grid-template-columns:1fr;}
     .map-container{grid-template-columns:1fr; gap:24px;}
     .infobar .wrap{grid-template-columns:1fr 1fr;}
@@ -490,6 +579,7 @@
     <div class="logo"><span class="dot"></span> PUP CAMPUS TOUR</div>
     <div class="navlinks">
       <a href="#landmarks">Landmarks</a>
+      <a href="#movements">Milestones</a>
       <a href="#icons">Campus Icons</a>
       <a href="#facilities">Facilities</a>
       <a href="#plan">Plan Your Visit</a>
@@ -498,6 +588,9 @@
 </nav>
 
 <section class="hero">
+  <div class="cosmic-dust" style="top: -50px; left: -50px;"></div>
+  <div class="cosmic-dust" style="bottom: -50px; right: -50px;"></div>
+
   <div class="star gold" style="width:22px;height:22px; top:70px; left:10%;"></div>
   <div class="star white" style="width:14px;height:14px; top:130px; left:22%;"></div>
   <div class="star blue" style="width:18px;height:18px; top:60px; right:14%;"></div>
@@ -505,21 +598,22 @@
   <div class="star white" style="width:16px;height:16px; bottom:60px; left:16%;"></div>
 
   <div class="wrap">
-    <span class="eyebrow">EST. 1904 · ISKOLAR NG BAYAN</span>
+    <span class="eyebrow">✦ EST. 1904 · ISKOLAR NG BAYAN ✦</span>
     <div class="orbit">
-      <h1 class="bubble">FRESHIES<br>2026</h1>
-      <div class="sub-line">PUP Campus Tour</div>
+      <h1 class="bubble">Welcome to the<br>PUP Campus Tour!</h1>
     </div>
     <p class="tagline">Walk through 120+ years of history — from a colonial-era business school to the home of the Iskolar ng Bayan. Landmarks, hidden hangout spots, and the people who put PUP on the map.</p>
     <div class="pills">
       <div class="pill">🏛 5 Historic Landmarks</div>
+      <div class="pill">✊ 2 Student Movements</div>
       <div class="pill">📍 20+ Campus Facilities</div>
       <div class="pill">⭐ 2 Campus Icons</div>
     </div>
+    <a href="#welcome" class="hero-cta">Start the Tour <span class="arrow-down">↓</span></a>
   </div>
 </section>
 
-<section class="welcome">
+<section class="welcome" id="welcome">
   <div class="wrap grid">
     <div>
       <h2>Welcome to PUP<br>A. Mabini Campus</h2>
@@ -576,9 +670,9 @@
 
       <div class="land-card">
         <div class="star blue"></div>
-        <div class="loc">A. Mabini Campus</div>
+        <div class="loc">A. Mabini Campus · formerly Freedom Hall / Unyon ng Mag-aaral Bldg.</div>
         <h3>Charlie Del Rosario Bldg.</h3>
-        <p>Named for Carlos "Charlie" del Rosario, a 27-year-old Political Science and History instructor at the Philippine College of Commerce and a ranking member of the Movement for a Democratic Philippines and former KM general secretary, who disappeared on March 19, 1971 and is considered the first desaparecido/victim of the Marcos regime. A 2025 document discovery confirmed he was abducted, tortured, and killed by the Presidential Security Unit.</p>
+        <p>Named for Carlos "Charlie" del Rosario, a 27-year-old Political Science and History instructor at the Philippine College of Commerce and a ranking member of the Movement for a Democratic Philippines and former KM general secretary, who disappeared on March 19, 1971 and is considered the first desaparecido/victim of the Marcos regime. A 2025 document discovery confirmed he was abducted, tortured, and killed by the Presidential Security Unit under Fabian Ver. Today the building functions as PUP's Student Center, still known to many as "Unyon."</p>
       </div>
 
       <div class="land-card">
@@ -586,6 +680,32 @@
         <div class="loc">A. Mabini Campus, Oval</div>
         <h3>Gabriela Silang Bldg.</h3>
         <p>Named after the Ilocano revolutionary heroine Gabriela Silang; the building functions as a hall for student organizations and offices. It became a flashpoint in 2017 when the administration and student activists clashed over the closure of Gabriela Silang Hall, a two-story building for student activities, with student offices and "tambayans" shut and students forcibly removed by security.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="movements" id="movements">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Student Movements &amp; Milestones</h2>
+      <span class="tag">Voices of the Iskolar</span>
+    </div>
+    <div class="card-grid">
+
+      <div class="move-card">
+        <div class="star blue"></div>
+        <span class="yr">2010</span>
+        <h3>"Burning Chairs" Protest</h3>
+        <p>Students walked out of classes and burned old, damaged armchairs to protest a proposed 2,000% tuition hike. Nearly a thousand students threw chairs, tables, and papers from the Main Building's upper floors to the ground before setting them on fire.</p>
+      </div>
+
+      <div class="move-card">
+        <div class="star gold"></div>
+        <span class="yr">2026</span>
+        <h3>PUP CCIS Walkout Against Unfair Hands-On Exams</h3>
+        <p>CCIS students staged a walkout after the college abruptly changed the schedule for major hands-on exams in the last week of May 2026, despite the original dates having been posted back in February. The change collided with students' already-set schedules for final projects and exams in their minors. Concerns were raised but went unheard, so students walked out — not just over the scheduling conflict, but to assert that student concerns can't be dismissed.</p>
       </div>
 
     </div>
@@ -639,7 +759,7 @@
 
     <div class="map-container">
       <div class="map-preview">
-        <img src="pup obelisk.jpg" alt="PUP A. Mabini Campus Vicinity Map">
+        <img src="pupVicinityMap.jpg" alt="PUP A. Mabini Campus Vicinity Map">
       </div>
       <div class="map-details">
         <h3>Explore the Campus Layout</h3>
@@ -656,7 +776,7 @@
       <div class="sub-directory-head">
         <div>
           <h4>Facility Directory</h4>
-          <div class="count-note" id="countNote">18 locations across campus</div>
+          <div class="count-note" id="countNote">20 locations across campus</div>
         </div>
         <span class="tag">A–Z as walked</span>
       </div>
@@ -676,6 +796,8 @@
 </section>
 
 <section class="infobar" id="plan">
+  <div class="star white" style="width:10px;height:10px; top:30px; right:15%;"></div>
+  <div class="star gold" style="width:14px;height:14px; bottom:20px; left:10%;"></div>
   <div class="wrap">
     <div class="lead">
       <h2>Plan Your Tour</h2>
@@ -699,7 +821,6 @@
       <h5>Good to Know</h5>
       <ul>
         <li>NALLRC gets crowded — go early</li>
-        <li>Obelisk is the go-to photo spot</li>
         <li>Lagoon has the most food stalls</li>
       </ul>
     </div>
@@ -771,7 +892,7 @@
     },
     {
       name: "West Wing",
-      info: "The West Wing of the PUP Main Academic Building.",
+      info: "The West Wing of the PUP Main Academic Building contains classrooms, faculty offices, and student offices.",
       tip: "May magandang solo CR dito — walang lock."
     },
     {
@@ -788,11 +909,6 @@
       name: "Nutrition and Food Science Bldg.",
       info: "The Nutrition and Food Science Building at PUP serves as the specialized facility for academic instruction, laboratory experimentation, and research in food technology, safety, and human nutrition.",
       tip: "First thought — parang dorm siya kahit nasa loob ng campus HAHAHA."
-    },
-    {
-      name: "GAD Bldg.",
-      info: "",
-      tip: "Saan nga ba ito? Google shows it near OUS."
     },
     {
       name: "Ferry Station",
