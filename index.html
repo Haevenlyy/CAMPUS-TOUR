@@ -155,12 +155,9 @@
   }
   .orbit{
     position:relative;
-    width:min(680px, 82vw);
+    width:min(680px, 92vw);
     margin:0 auto;
-    padding:50px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding:44px 10px;
   }
   .orbit::before{
     content:"";
@@ -183,7 +180,6 @@
     -webkit-text-stroke:2px var(--navy);
     paint-order:stroke fill;
     letter-spacing:.01em;
-    text-align: center;
   }
   .hero p.tagline{
     max-width:480px; margin:26px auto 0;
@@ -648,8 +644,8 @@
   @media (max-width:560px){
     .card-grid{grid-template-columns:1fr;}
     .infobar .wrap{grid-template-columns:1fr;}
-    .orbit { padding: 54px 15px; }
-    .orbit::before { transform: scaleY(0.6); }
+    .orbit { padding: 64px 10px; }
+    .orbit::before { transform: scaleY(0.7); }
   }
 </style>
 </head>
@@ -698,9 +694,9 @@
     <p class="tagline">Walk through 120+ years of history — from a colonial-era business school to the home of the Iskolar ng Bayan. Landmarks, hidden hangout spots, and the people who put PUP on the map.</p>
     <div class="pills">
       <a href="#landmarks" class="pill">🏛 5 Historic Landmarks</a>
-      <a href="#movements" class="pill">✊ 2 Student Movements</a>
-      <a href="#facilities" class="pill">📍 20+ Campus Facilities</a>
+      <a href="#movements" class="pill">✊ 4 Student Movements &amp; Milestones</a>
       <a href="#icons" class="pill">⭐ 2 Campus Icons</a>
+      <a href="#facilities" class="pill">📍 20+ Campus Facilities</a>
     </div>
     <a href="#welcome" class="hero-cta">Start the Tour <span class="arrow-down">↓</span></a>
   </div>
@@ -796,6 +792,20 @@
 
       <div class="move-card">
         <div class="star gold"></div>
+        <span class="yr">2024</span>
+        <h3>PUP Students’ Protest Against the National Polytechnic University Bill</h3>
+        <p>PUP students staged protests against the proposed National Polytechnic University (NPU) Bill, raising concerns over its provisions and the lack of meaningful student consultation. The bill was later vetoed by President Ferdinand Marcos Jr. on July 11, 2025, citing PUP’s non-compliance with requirements for assessment.</p>
+      </div>
+
+      <div class="move-card">
+        <div class="star blue"></div>
+        <span class="yr">2024</span>
+        <h3>PUP Student-Athletes Win 25th UNIGAMES Overall Championship</h3>
+        <p>111 PUP student-athletes competed against 32 other universities and colleges at the 25th UNIGAMES in Dipolog City. PUP ultimately became the overall champion, with its men's basketball team winning the 5-on-5 championship and other PUP teams earning podium finishes.</p>
+      </div>
+
+      <div class="move-card">
+        <div class="star gold"></div>
         <span class="yr">2026</span>
         <h3>PUP CCIS Walkout Against Unfair Hands-On Exams</h3>
         <p>CCIS students staged a walkout after the college abruptly changed the schedule for their major hands-on exams in the last week of May 2026 despite the original dates having been posted back in February. The changes collided with students' already-set schedules for final projects and exams in their other subjects, especially their minors. Students raised their voices and concerns but to no avail. In response, they collectively walked out, not just to protest the scheduling conflict, but to assert that student concerns can't be dismissed.</p>
@@ -877,11 +887,9 @@
       <div class="batch-toggle">
         <button class="batch-btn active" data-batch="1" onclick="setBatch(1)">
           Batch 1
-          <span>Start at Oval</span>
         </button>
         <button class="batch-btn" data-batch="2" onclick="setBatch(2)">
           Batch 2
-          <span>Start at Lagoon</span>
         </button>
       </div>
 
@@ -954,8 +962,6 @@
 
   function syncDropdownHeight() {
     if (dropdownEl.classList.contains('open')) {
-      // Recalculate against actual content height so nothing gets clipped
-      // (important on mobile where cards stack into a single, taller column).
       dropdownEl.style.maxHeight = dropdownEl.scrollHeight + 'px';
     } else {
       dropdownEl.style.maxHeight = '0px';
@@ -967,7 +973,6 @@
     dropdownEl.classList.toggle('open');
     dropdownBtn.classList.toggle('active');
     if (opening) {
-      // set starting point then grow to full content height for a smooth transition
       dropdownEl.style.maxHeight = '0px';
       requestAnimationFrame(() => {
         dropdownEl.style.maxHeight = dropdownEl.scrollHeight + 'px';
@@ -983,108 +988,144 @@
     }
   });
 
-  const facilities = [
-    {
-      name: "Oval",
+  const batch1Order = [
+    "Oval",
+    "Apolinario Mabini Shrine",
+    "Interfaith Chapel",
+    "East Wing",
+    "Nutrition and Food Science Bldg.",
+    "Ferry Station",
+    "South Wing",
+    "Linear Park",
+    "Charlie del Rosario Bldg.",
+    "Ninoy Aquino Library and Learning Resources Center",
+    "LHS",
+    "OUS Bldg.",
+    "Lagoon",
+    "Amphitheater",
+    "Tahanan ng Alumni",
+    "Physical Education Bldg.",
+    "Swimming Pool",
+    "Obelisk",
+    "Freedom Park",
+    "Gym",
+    "Gazebo"
+  ];
+
+  const batch2Order = [
+    "Oval",
+    "Gym",
+    "Tahanan ng Alumni",
+    "Physical Education Bldg.",
+    "Swimming Pool",
+    "Obelisk",
+    "Freedom Park",
+    "Lagoon",
+    "Amphitheater",
+    "Ninoy Aquino Library and Learning Resources Center",
+    "LHS",
+    "OUS Bldg.",
+    "Charlie del Rosario Bldg.",
+    "Linear Park",
+    "South Wing",
+    "Interfaith Chapel",
+    "East Wing",
+    "Nutrition and Food Science Bldg.",
+    "Ferry Station",
+    "Apolinario Mabini Shrine",
+    "Gazebo"
+  ];
+
+  const facilitiesData = {
+    "Oval": {
       info: "The PUP Oval serves as the main venue for sports festivals, recreational activities, and some classes in Physical Activities Toward Health and Fitness.",
       tip: "Could be a hangout spot for friends at night — malamig, and you can freely play games like habulan and such."
     },
-    {
-      name: "Gazebo",
+    "Gazebo": {
       info: "The PUP Gazebo provides a dedicated open-air space for students to study, rest, and hold small group meetings between classes.",
       tip: "Masarap mag-review o magchismisan dito pag may vacant time, kaso unahan lang talaga sa upuan huhuhu — effective spot din pang-videoke with blockmates."
     },
-    {
-      name: "Gym",
+    "Gym": {
       info: "The PUP Gymnasium is the main indoor sports venue for intercollegiate basketball and volleyball competitions, physical education classes, and university varsity training.",
       tip: "Dito raw venue ng last batch ng graduates. When kaya mabubuksan aircon pag nagpapathfit?"
     },
-    {
-      name: "Tahanan ng Alumni",
+    "Tahanan ng Alumni": {
       info: "As a dedicated area for alumni relations, PUP's Tahanan ng Alumni (Alumni Center) provides returning graduates with a place to stay on campus, network, and interact with the university.",
       tip: ""
     },
-    {
-      name: "Physical Education Bldg.",
+    "Physical Education Bldg.": {
       info: "The Physical Education (PE) facility at PUP, tied directly to the College of Human Kinetics (CHK), serves as the main academic and instructional hub for sports science, dance, and movement education.",
       tip: "Venue ng PATHFIT kapag hindi sa gym o sa open/tennis court."
     },
-    {
-      name: "Swimming Pool",
+    "Swimming Pool": {
       info: "The PUP Swimming Pool serves as the primary facility for aquatic Physical Education (PATHFIT) courses, swimming instruction, and water safety training. It also functions as the training ground for the varsity swimming team and hosts intramural aquatic competitions.",
       tip: "If maswerte makakapagswimming dito kung ito PATHFIT hehe"
     },
-    {
-      name: "Obelisk",
+    "Obelisk": {
       info: "The iconic PUP Obelisk stands as the central symbol of the university, representing the strength, resilience, and noble ideals of the Polytechnic University of the Philippines. Located near the main entrance, it serves as a historic landmark and gathering point.",
       tip: "Dito mostly nagpapapicture ang bagong graduates — may sabi-sabing pag nagpicture ka diyan hindi ka raw makakagraduate (over lang talaga 'yan!). Aesthetic din siya, lalo pag may seasonal décor."
     },
-    {
-      name: "Freedom Park",
+    "Freedom Park": {
       info: "The PUP Freedom Park serves as an open space for student gatherings, activities, and leisure breaks inside the campus.",
       tip: "When magagawa? Pero may mga seats pa rin naman sa gilid para tumambay and good for eating place kasi tahimik "
     },
-    {
-      name: "Lagoon",
+    "Lagoon": {
       info: "The central landmark hub of PUP Main, surrounded by food stalls, greenery, and student activity centers.",
       tip: "Dito 1-2-3 go kanya-kanya na — maraming stand-up booths at kainan, minsan may brand booths din. Nakaluwag-luwag dito."
     },
-    {
-      name: "Amphitheater",
+    "Amphitheater": {
       info: "An open-air tiered seating venue right near the Lagoon, commonly used for student performances, rallies, and small assemblies.",
       tip: "Pwedeng tambayan after bumili ng food sa Lagoon — kung bukas. Minsan kasi nakasarado."
     },
-    {
-      name: "West Wing",
+    "West Wing": {
       info: "The West Wing of the PUP Main Academic Building contains classrooms, faculty offices, and student offices.",
       tip: "May magandang solo CR dito (walang lock)."
     },
-    {
-      name: "East Wing",
+    "East Wing": {
       info: "The PUP Main Academic Building's East Wing serves mainly as an instructional hub that houses classrooms, academic departments, and faculty offices.",
       tip: "Masikip, mainit, tas wala pa rin kuryente??."
     },
-    {
-      name: "Interfaith Chapel",
+    "Interfaith Chapel": {
       info: "A quiet space dedicated to spiritual reflection, prayer, quiet devotion, and religious services for all faiths within the campus community.",
       tip: "May mga upuan sa paligid — good tambayan kung gusto mo ng katahimikan sa magulong mundo."
     },
-    {
-      name: "Nutrition and Food Science Bldg.",
+    "Nutrition and Food Science Bldg.": {
       info: "The Nutrition and Food Science Building at PUP serves as the specialized facility for academic instruction, laboratory experimentation, and research in food technology, safety, and human nutrition.",
       tip: "First thought, dorm toh inside campus HAHHAHA."
     },
-    {
-      name: "Ferry Station",
+    "Ferry Station": {
       info: "The Pasig River Ferry Transport System PUP Station, providing an alternative water-based transportation route for students and commuters going to Pasig, Makati, or Manila.",
       tip: "Binondo is now!"
     },
-    {
-      name: "South Wing",
+    "South Wing": {
       info: "The computer lab for the CCIS Department is located on the fifth floor of the South Wing building, which is primarily made up of offices from various school departments.",
       tip: "Wing ng Computer Laboratories, specifically sa 5th floor."
     },
-    {
-      name: "Ninoy Aquino Library and Learning Resources Center",
+    "Ninoy Aquino Library and Learning Resources Center": {
       info: "The primary university library housing thousands of books, research archives, digital resources, and quiet study halls.",
       tip: "Sleeping place ng mga pagod na iskolar ng bayan."
     },
-    {
-      name: "LHS",
+    "LHS": {
       info: "Laboratory High School facility within the main campus grounds, housing PUP's junior and senior high school students.",
       tip: "May open field sa ground floor — good practice space for activities and dances."
     },
-    {
-      name: "OUS Bldg.",
+    "OUS Bldg.": {
       info: "Open University System Building, handling distance learning, flexible education programs, and specialized diploma courses.",
       tip: "Bagong-tayo — North Wing next?"
     },
-    {
-      name: "Linear Park",
+    "Linear Park": {
       info: "A scenic riverside promenade strip along the Pasig River side of the campus grounds.",
       tip: "Dito ka talaga makakapag deep thinking na para bang huey isip tapos langhap ng liog pasig."
+    },
+    "Apolinario Mabini Shrine": {
+      info: "A bamboo-and-nipa house originally in Nagtahan, Manila, where Mabini first lived in 1888 and died of cholera on May 13, 1903.",
+      tip: "Historic heritage site inside the campus."
+    },
+    "Charlie del Rosario Bldg.": {
+      info: "Named for Carlos \"Charlie\" del Rosario, a political science instructor and activist who disappeared during the martial law era.",
+      tip: "Important historical landmark."
     }
-  ];
+  };
 
   const grid = document.getElementById('facGrid');
   const countNote = document.getElementById('countNote');
@@ -1098,7 +1139,8 @@
     } else {
       noResults.style.display = 'none';
     }
-    list.forEach((f, i) => {
+    list.forEach((name, i) => {
+      const f = facilitiesData[name] || { info: "", tip: "" };
       const card = document.createElement('div');
       card.className = 'fac-card';
 
@@ -1112,38 +1154,34 @@
 
       card.innerHTML = `
         <span class="star ${i % 3 === 0 ? 'gold' : (i % 3 === 1 ? 'blue' : 'white')}"></span>
-        <h5>${f.name}</h5>
+        <h5>${name}</h5>
         ${infoHTML}
         ${tipHTML}
       `;
       grid.appendChild(card);
     });
     countNote.textContent = `${list.length} location${list.length === 1 ? '' : 's'} across campus`;
-    // Keep the dropdown's max-height in sync with the (possibly filtered) content
-    // so search results are never clipped while the panel is open.
     syncDropdownHeight();
   }
 
-  const LAGOON_INDEX = facilities.findIndex(f => f.name === "Lagoon");
   let currentBatch = 1;
 
   function getBatchOrder(batch) {
-    if (batch === 2 && LAGOON_INDEX !== -1) {
-      // Batch 2 walks the same loop but starting (and ending) at the Lagoon.
-      return facilities.slice(LAGOON_INDEX).concat(facilities.slice(0, LAGOON_INDEX));
-    }
-    return facilities.slice();
+    return batch === 2 ? batch2Order : batch1Order;
   }
 
   function applyFilterAndRender() {
     const q = searchInput.value.trim().toLowerCase();
     const ordered = getBatchOrder(currentBatch);
     const filtered = q
-      ? ordered.filter(f =>
-          f.name.toLowerCase().includes(q) ||
-          f.info.toLowerCase().includes(q) ||
-          f.tip.toLowerCase().includes(q)
-        )
+      ? ordered.filter(name => {
+          const f = facilitiesData[name] || {};
+          return (
+            name.toLowerCase().includes(q) ||
+            (f.info && f.info.toLowerCase().includes(q)) ||
+            (f.tip && f.tip.toLowerCase().includes(q))
+          );
+        })
       : ordered;
     render(filtered);
   }
