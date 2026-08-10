@@ -158,6 +158,10 @@
     width:min(680px, 92vw);
     margin:0 auto;
     padding:44px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .orbit::before{
     content:"";
@@ -180,6 +184,7 @@
     -webkit-text-stroke:2px var(--navy);
     paint-order:stroke fill;
     letter-spacing:.01em;
+    text-align: center;
   }
   .hero p.tagline{
     max-width:480px; margin:26px auto 0;
@@ -631,7 +636,7 @@
   }
 
   @media (max-width:880px){
-    .welcome .grid{grid-template-columns:1fr;}
+    .welcome .grid{grid-template-columns:1fai;}
     .card-grid{grid-template-columns:1fr 1fr;}
     .movements .card-grid{grid-template-columns:1fr;}
     .icon-grid{grid-template-columns:1fr;}
